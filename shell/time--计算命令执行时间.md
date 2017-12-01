@@ -1,0 +1,1 @@
+time [option] comand [arguments...]  
