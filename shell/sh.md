@@ -1,5 +1,17 @@
 
 
+bash默认的组合键 | 执行结果
+-- | --
+ctrl+d | 输入结束(EOF)
+ctrl+m | 就是enter
+ctrl+s | 暂停屏幕输出
+ctrl+q | 恢复屏幕输出
+ctrl+u | 提示符下将整行命令删除
+ctrl+z | 暂停目前的命令
+
+
+
+
 
 
 header 1 | header 2
@@ -9,6 +21,9 @@ header 1 | header 2
 -x | 将使用到的脚本的内容显示到屏幕上,这个参数很有用
  
 
+
+经验技巧  
+1 sh -c "cmd1;cmd2;..."可以用来执行一连串命令
  
  
  
