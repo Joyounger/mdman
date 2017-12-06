@@ -15,4 +15,5 @@
  $ last | tr '[a-z]' '[A-Z]'  
 WTMP BEGINS THU MAR 30 17:58:23 2017  
 
-2 取出dos换行符中的\r 
+2 取出dos换行符中的\r  
+cat /root/passwd | tr -d '\r' > /root/passwd.linux  
