@@ -12,7 +12,7 @@ set [opt]
 -m | 默认启用,与工作管理有关
 -B | 默认启用,与括号[]的作用有关
 -C | 默认不启用,使用>等时,则若文件存在时,该文件不会被覆盖
-
+-e | Exit immediately if a command exits with a non-zero status.
 
 
 
@@ -22,7 +22,8 @@ set [opt]
 3 显示目前所有的set设置值  
 $ echo $-   
 himBH  
-变量$-的内容就是set的所有设置值,himBH时bash的默认值
+变量$-的内容就是set的所有设置值,himBH时bash的默认值  
+4 如果想在多个脚本调用中遇到出错就立刻退出所有脚本,需要设置set -e或者用#!/bin/bash -e  
 
 示例  
-1 set
+1 set  
