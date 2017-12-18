@@ -32,4 +32,11 @@ opt | 含义
 
 
 示例  
-1 
+1 解压部分文件  
+解压单个文件  
+tar -zxvf filename.tar.gz foder/file 解压filename.tar.gz中的文件folder/file  
+解压多个文件  
+tar -zxvf filename.tar.gz foder/*.txt 解压filename.tar.gz中folder下所有后缀为txt的文件  
+2 解压到指定目录  
+tar -zxvf filename.tar.gz foder/*.txt -C /new/dir 解压filename.tar.gz中folder下所有后缀为txt的文件到/new/dir 
+
