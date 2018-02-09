@@ -15,3 +15,25 @@
 -w | 整个单词匹配
 -x | 整行匹配
 -c | 统计符合匹配模式的行数
+-v/--invert-match | 反转查找Invert the sense of matching, to select non-matching lines.
+
+
+
+
+
+
+
+
+
+
+
+
+
+经验技巧  
+1 排除空行  
+grep -v '^$' filename  
+排除以#开头的注释  
+grep -v '^#' filename  
+排除空行又排除注释行  
+grep -v '^$|#' filename
+
