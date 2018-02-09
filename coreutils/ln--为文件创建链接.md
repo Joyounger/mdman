@@ -9,6 +9,7 @@ ln [选项] 源文件 目标文件
 -n/--no-dereference |  把指向目录的符号连接目标当作一个普通文件  
 -i | 如果目标文件已存在,则提示用户确认覆盖已存在的目标文件
 -v | 输出详细执行过程
+-r | 创建指向相对路径的链接,create symbolic links relative to link location
 
 参数 | 功能
 --- | ---
