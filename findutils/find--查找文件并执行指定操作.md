@@ -7,9 +7,10 @@ find [选项] [参数]
 查找文件的起始目录  
 
 
-header 1 | header 2
+选项 | 含义
 ---|---
--name <查找模式> | 查找时文件名大小写不敏感
+-name <查找模式> | 查找时文件名大小写敏感
+-iname <查找模式> | 查找时文件名大小写不敏感
 -lname <查找模式> | 按指定的文件名查找模式查找符号链接
 -gid <组ID> | 查找属于指定组ID的所有文件
 -uid <用户ID> | 
@@ -25,6 +26,29 @@ header 1 | header 2
 -printf <格式> | 指定显示查找结果的格式,与C的printf格式输出相似
 -print | 在标准输出设备上显示查找到的文件信息,默认选项,可以省略
 -maxdepth | 
+
+
+经验技巧  
+1 如果想匹配多个条件中的一个,可以采用OR条件操作:
+find . \( -name "*.txt" -o -name "*.pdf" \) -print
+2 find也可以用"!"否定参数的含义:
+find . ! -name "*.txt" -print
+3 可以用-maxdepth指定最大深度,-mindepth指定开始遍历的最小深度.maxdepth和mindepth应该作为find的第三个参数出现.如果作为第4个或之后的参数,就可能会影响到find的效率.
+4 基于文件大小的搜索:
+find . -tyoe f -size +2k # 查找大于2KB
+find . -tyoe f -size -2k # 查找小于2KB
+find . -tyoe f -size 2k # 查找等于2KB
+5 删除找到的文件:-delete可以用来删除find查找到的匹配文件
+6 -exec结合多个命令:无法在-exec参数中直接使用多个命令.它只能接受单个命令,不过可以将多个命令写到脚本中,然后再-exec中使用这个脚本:
+-exec ./commands.sh {} \;
+7 -exec能够同printf结合来生成有用的输出信息:
+find . -type f -name "*.txt" -exec printf "text file:%s\n" {} \;
+8 find跳过特定目录,将某些文件或目录从搜索过程中排除的动作成为修剪(prune):
+find source_path \( -name ".git" -prune \) -o \( -type f -print \)
+
+
+
+
 
 
 
