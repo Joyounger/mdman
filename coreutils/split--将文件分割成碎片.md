@@ -7,9 +7,11 @@ split [选项] file PREFIX
 -b <size> | 后面接要切割成的文件大小,可加单位,如b, k, m
 -l | 以行数来进行切割
 PREFIX | 代表前导符,可作为切割文件的前导文字
-
+-d | use numeric suffixes starting at 0, not alphabetic
+-a, --suffix-length=N | 指定后缀长度,generate suffixes of length N (default 2)
 经验技巧  
 1 With no FILE, or when FILE is -, read standard input.  
+-l, --lines=NUMBER | put NUMBER lines/records per output file,根据行数分割
 
 
 示例  
