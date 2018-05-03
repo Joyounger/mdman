@@ -17,8 +17,15 @@ tail [opt] 文件
 
 经验技巧
 1 tail的-f选项可以实时监控文件内容的增长,适合监控日志文件的变化  
+tail -f /var/log/messages
+dmesg | tail -f
+tail -f也可以加入一个睡眠间隔-s,这样就可以设置监视文件更新的时间间隔.
 2 当使用-f name监视文件时,如果在监视过程中文件名发生了变化,则失去监视功能.当使用-f descriptor监视文件时,文件名变化后仍然能监视未见内容变化  
 3 tail默认也显示10行  
+4 tail有个很有意思的特性,当某个给定进程结束后,tail也随之结束.
+假设进程foo一直向该文件追加数据,那么tail -f就会一直执行,直到进程foo结束.
+PID=$(pidof foo)
+tail -f file --pid $PID
 
 
 
