@@ -36,4 +36,15 @@ grep -v '^$' filename
 grep -v '^#' filename  
 排除空行又排除注释行  
 grep -v '^$|#' filename
+2 grep搜索时包括或排除文件:
+只在目录中递归搜索所有的.c和.cpp
+grep "main()"  . -r --include *.{c.cpp}
+some{str1,str2,str3}会扩展成somestr1,somestr2,somestr3.
+3 grep的静默输出:-q
+4 打印出匹配文本之前或之后的行:
+seq 10 | grep 5 -A 3 #打印某个结果之后的3行
+seq 10 | grep 5 -B 3 #打印某个结果之前的3行
+seq 10 | grep 5 -C 3 # 打印之前和之后3行
+
+
 
