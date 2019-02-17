@@ -21,7 +21,11 @@ opt | 含义
 -z | gzip支持,此时文件名最好为*.tar.gz
 -P | 保留绝对路径,即允许备份数据中含有根目录'/'存在
 --exclude=FILE | 压缩过程中排除指定文件
-
+--exlcude-vcs | 归档时排除版本控制目录
+-r |  Append files to the end of an archive. 
+-t | List the contents of an archive.
+-C | 解压到特定目录
+--totals | 归档完后打印出总的归档字节数
 
 经验技巧  
 1 -c, -t, -x不可同时出现在一串命令行中  
@@ -29,6 +33,8 @@ opt | 含义
 3 由于-f filename是紧接在一起,因此建议将-f filename与其他选项分开  
 4 用-t查看压缩包内文件信息是,如果不加-v,仅列出里面文件名.如果用-v则会列出里面文件的大小权限等详细信息  
 5 tar打包的文件,如果没有压缩称为tarfile, 如果还经过压缩则称为tarball  
+6 用tar备份目录时备份权限等属性  
+tar --same-permission --remove-files -jcv dir/ -f dir.tar.bz2
 
 
 示例  
@@ -39,4 +45,39 @@ tar -zxvf filename.tar.gz foder/file 解压filename.tar.gz中的文件folder/fil
 tar -zxvf filename.tar.gz foder/*.txt 解压filename.tar.gz中folder下所有后缀为txt的文件  
 2 解压到指定目录  
 tar -zxvf filename.tar.gz foder/*.txt -C /new/dir 解压filename.tar.gz中folder下所有后缀为txt的文件到/new/dir 
+3 向归档中添加文件,用-r
+tar -rvf original.tar new_file
+4 列出归档中的内容:
+tar -t -f test.tar
+如果需要在列出tar内容时获得更多细节,可以使用-v或-vv
+5 归档时可以将stdout指定为输出文件,这样另一个命令就可以通过管道将它作为stdin
+当通过ssh连接传文件时就很有用:
+mkdir ~/dest
+tar -cf - file1 file2 file3 | tar -xvf - -C ~/dest
+用-c时,-f指定stdout作为归档文件
+用-x时,-f指定stdin作为提取内容
+6 连接归档文件
+tar -Af file1.tar file2.tar # 将file1.tar file2.tar 合并为file1.tar
+7 通过检测时间戳来更新归档 -u选项
+8 比较归档与文件系统中的内容
+tar -df archive.tar file1 file2
+9 从归档中删除文件,tar -f archive.tar --delete file1 file2
+10 压缩
+-j bzip2
+--lzma lzma格式,较新的格式,比bip2压缩率更高
+如果不指定压缩格式选项,可以用-a指定让tar按扩展名自动进行压缩
+11 排除文件
+--exclude "pattern"
+
+
+
+
+
+
+
+
+
+
+
+
 
