@@ -35,6 +35,12 @@ opt | 含义
 5 tar打包的文件,如果没有压缩称为tarfile, 如果还经过压缩则称为tarball  
 6 用tar备份目录时备份权限等属性  
 tar --same-permission --remove-files -jcv dir/ -f dir.tar.bz2
+7 同一文件,用tar创建gzip压缩包后hash不一样:https://stackoverflow.com/questions/36464358/why-do-the-md5-hashes-of-two-tarballs-of-the-same-file-differ  
+'tar czf outfile infiles' is equivalent to 'tar cf - infiles | gzip > outfile'
+The reason the files are different is because gzip puts its input filename and modification time into the compressed file. When the input is a pipe, it uses an empty string as the filename and the current time as the modification time.
+But it also has a --no-name option, which tells it not to put the name and timestamp into the file. So if you write the expanded command explicitly, instead of using the -z option to tar, you can make use of this option.
+解决:tar cf - testfile | gzip --no-name > a.tar.gz  
+
 
 
 示例  
